@@ -8,6 +8,10 @@ const TodoContainer = () => {
       <div className="flex items-center gap-2 text-2xl font-bold">
         <ClipboardList /> <h1>Todo List</h1>
       </div>
+      <div className="my-5 flex">
+        <input className="input" type="text" placeholder="Add your task" />
+        <button className="btn btn-primary">Add</button>
+      </div>
       <Todos />
     </div>
   );
