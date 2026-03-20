@@ -1,10 +1,11 @@
 import "./App.css";
+import TodoContainer from "./components/TodoContainer/TodoContainer";
 
 function App() {
   return (
-    <>
-      <h1>Hello</h1>
-    </>
+    <div className="bg-stone-900 py-10">
+      <TodoContainer />
+    </div>
   );
 }
 
