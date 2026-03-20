@@ -1,18 +1,54 @@
-import React from "react";
+import React, { useRef } from "react";
 import Todos from "../Todos/Todos";
 import { ClipboardList } from "lucide-react";
+import { useState } from "react";
 
 const TodoContainer = () => {
+  const [todoList, setTodoList] = useState([]);
+
+  const inputRef = useRef();
+  const add = () => {
+    const inputText = inputRef.current.value.trim();
+    if (inputText === "") {
+      return;
+    }
+    const newTodo = {
+      id: Date.now(),
+      text: inputText,
+      isComplete: false,
+    };
+    setTodoList([...todoList, newTodo]);
+    inputRef.current.value = "";
+    console.log(todoList);
+  };
+
+  const deleteTodo = (id) => {
+    setTodoList((prev) => {
+      return prev.filter((item) => item.id !== id);
+    });
+  };
+
   return (
     <div className="bg-white max-w-[95%] md:max-w-175 mx-auto p-5 rounded-2xl">
       <div className="flex items-center gap-2 text-2xl font-bold">
         <ClipboardList /> <h1>Todo List</h1>
       </div>
       <div className="my-5 flex">
-        <input className="input" type="text" placeholder="Add your task" />
-        <button className="btn btn-primary">Add</button>
+        <input
+          ref={inputRef}
+          className="input"
+          type="text"
+          placeholder="Add your task"
+        />
+        <button onClick={add} className="btn btn-primary">
+          Add
+        </button>
       </div>
-      <Todos />
+      <Todos
+        todoList={todoList}
+        setTodoList={setTodoList}
+        deleteTodo={deleteTodo}
+      />
     </div>
   );
 };
