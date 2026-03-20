@@ -19,12 +19,22 @@ const TodoContainer = () => {
     };
     setTodoList([...todoList, newTodo]);
     inputRef.current.value = "";
-    console.log(todoList);
   };
 
   const deleteTodo = (id) => {
     setTodoList((prev) => {
       return prev.filter((item) => item.id !== id);
+    });
+  };
+
+  const toggle = (id) => {
+    setTodoList((prev) => {
+      return prev.map((todo) => {
+        if (todo.id === id) {
+          return { ...todo, isComplete: !todo.isComplete };
+        }
+        return todo;
+      });
     });
   };
 
@@ -48,6 +58,7 @@ const TodoContainer = () => {
         todoList={todoList}
         setTodoList={setTodoList}
         deleteTodo={deleteTodo}
+        toggle={toggle}
       />
     </div>
   );

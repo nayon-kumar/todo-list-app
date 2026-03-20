@@ -2,9 +2,12 @@ import React from "react";
 import { Trash2 } from "lucide-react";
 import { CircleCheck } from "lucide-react";
 
-const Item = ({ id, text, isComplete, deleteTodo }) => {
+const Item = ({ id, text, isComplete, deleteTodo, toggle }) => {
   return (
-    <div className="flex items-center gap-3 justify-between border-2 rounded-lg p-5 border-gray-200">
+    <div
+      onClick={() => toggle(id)}
+      className="flex items-center gap-3 justify-between border-2 rounded-lg p-5 border-gray-200"
+    >
       <div className="flex items-center gap-3">
         <div>
           <CircleCheck />
