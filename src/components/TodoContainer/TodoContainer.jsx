@@ -1,10 +1,14 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import Todos from "../Todos/Todos";
 import { ClipboardList } from "lucide-react";
 import { useState } from "react";
 
 const TodoContainer = () => {
   const [todoList, setTodoList] = useState([]);
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todoList));
+  }, [todoList]);
 
   const inputRef = useRef();
   const add = () => {
