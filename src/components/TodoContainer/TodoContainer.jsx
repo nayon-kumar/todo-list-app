@@ -18,6 +18,7 @@ const TodoContainer = () => {
   const add = () => {
     const inputText = inputRef.current.value.trim();
     if (inputText === "") {
+      inputRef.current.value = "";
       return;
     }
     const newTodo = {
@@ -51,7 +52,7 @@ const TodoContainer = () => {
       <div className="flex items-center gap-2 text-2xl font-bold">
         <ClipboardList /> <h1>Todo List</h1>
       </div>
-      <div className="my-5 flex">
+      <div className="my-5 flex gap-1">
         <input
           ref={inputRef}
           className="input"
