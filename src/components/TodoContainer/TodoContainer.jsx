@@ -4,7 +4,11 @@ import { ClipboardList } from "lucide-react";
 import { useState } from "react";
 
 const TodoContainer = () => {
-  const [todoList, setTodoList] = useState([]);
+  const [todoList, setTodoList] = useState(
+    localStorage.getItem("todos")
+      ? JSON.parse(localStorage.getItem("todos"))
+      : [],
+  );
 
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todoList));
